@@ -9,7 +9,7 @@
                     <img src="{{ asset($product->image) }}" alt="" width="253" height="253" class="card-img-top">
                     <div class="card-body">
                         <a href="{{ route('product', ['product' => $product]) }}" class="card-title">{{ $product->name }}</a>
-                        <a href="{{ route('pay', ['$product' => $product]) }}" class="btn btn-primary">Купить</a>
+                        <a href="{{ route('payment.choose', ['$product' => $product]) }}" class="btn btn-primary">Купить</a>
                     </div>
                 </section>
             @endforeach
