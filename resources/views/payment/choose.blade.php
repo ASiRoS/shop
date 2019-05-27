@@ -28,6 +28,7 @@
         <input type="hidden" name="receiver" value="{{ $yandexWallet }}">
         <input type="hidden" name="formcomment" value="{{ $product->name }}">
         <input type="hidden" name="short-dest" value="{{ $product->name }}">
+        <input type="hidden" name="targets" value="{{ $product->category->name }} {{ $product->name }}">
         <input type="hidden" name="label" class="form-control" value="{{ $product->id }}">
         <input type="hidden" name="quickpay-form" value="shop">
         <input type="hidden" name="sum" value="{{ $product->price }}" data-type="number">
