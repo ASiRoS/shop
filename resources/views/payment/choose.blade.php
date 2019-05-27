@@ -45,7 +45,7 @@
         });
 
         $('.pay-atm').on('click', function () {
-            $('.payment-type').attr('value', 'PC');
+            $('.payment-type').attr('value', 'AC');
             $('.yandex-form').submit();
         });
     </script>
