@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/payment/yandex/receive', 'ReceiveController@yandex')->name('payment.receive.yandex');
+Route::post('/payment/qiwi/receive', 'ReceiveController@qiwi')->name('payment.receive.qiwi');
+
+Route::post('/payment/purchase/new');

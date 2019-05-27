@@ -4,8 +4,63 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "305b939cec421c77430240c7c95af4fe",
+    "content-hash": "234e103b49f887a5f775fe6ec6ffa6cf",
     "packages": [
+        {
+            "name": "curl/curl",
+            "version": "1.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-mod/curl.git",
+                "reference": "43436a604b18c2a985cbc3f983be817fbe500e99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-mod/curl/zipball/43436a604b18c2a985cbc3f983be817fbe500e99",
+                "reference": "43436a604b18c2a985cbc3f983be817fbe500e99",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "squizlabs/php_codesniffer": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Curl": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan Amouhzi",
+                    "email": "hassan@anezi.net",
+                    "homepage": "http://hassan.amouhzi.com"
+                },
+                {
+                    "name": "php-curl-class",
+                    "homepage": "https://github.com/php-curl-class"
+                },
+                {
+                    "name": "user52",
+                    "homepage": "https://github.com/user52"
+                }
+            ],
+            "description": "cURL class for PHP",
+            "homepage": "https://github.com/php-mod/curl",
+            "keywords": [
+                "curl",
+                "dot"
+            ],
+            "time": "2018-09-05T17:16:47+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -1358,6 +1413,46 @@
                 "shell"
             ],
             "time": "2018-10-13T15:16:03+00:00"
+        },
+        {
+            "name": "qiwi/bill-payments-php-sdk",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/QIWI-API/bill-payments-php-sdk.git",
+                "reference": "c91a8b0608714dcf32fb14fa2e818f9ff7ed021b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/QIWI-API/bill-payments-php-sdk/zipball/c91a8b0608714dcf32fb14fa2e818f9ff7ed021b",
+                "reference": "c91a8b0608714dcf32fb14fa2e818f9ff7ed021b",
+                "shasum": ""
+            },
+            "require": {
+                "curl/curl": "1.9.*",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.6.0",
+                "ramsey/uuid": "3.8.*"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.8.*",
+                "phpunit/phpunit": "5.7.27",
+                "squizlabs/php_codesniffer": "3.4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qiwi\\Api\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Universal payments API SDK",
+            "homepage": "https://github.com/QIWI-API/bill-payments-php-sdk",
+            "time": "2019-01-24T08:49:29+00:00"
         },
         {
             "name": "ramsey/uuid",

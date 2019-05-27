@@ -13,7 +13,9 @@
         "fruitware/qiwi-service-provider-sdk": "dev-master",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "yandex-money/yandex-money-sdk-php": "v3.0.9"
+        "qiwi/bill-payments-php-sdk": "^0.1.0",
+        "yandex-money/yandex-money-sdk-php": "v3.0.9",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

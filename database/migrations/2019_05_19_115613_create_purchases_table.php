@@ -19,6 +19,9 @@ class CreatePurchasesTable extends Migration
             $table->string('customer');
             $table->timestamps();
 
+            $table->string('bill_id', 64);
+            $table->string('status');
+
             $table
                 ->foreign('product_id')
                 ->references('id')

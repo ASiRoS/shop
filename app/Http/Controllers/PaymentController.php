@@ -6,49 +6,37 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Setting;
 use App\Models\YandexPayment;
-use App\Services\Qiwi\CheckCommand;
-use App\Services\Qiwi\PayCommand;
-use Fruitware\QiwiServiceProvider\Model\Request\RequestInterface;
-use Fruitware\QiwiServiceProvider\Service;
+use App\Services\Qiwi\QiwiPay;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Ramsey\Uuid\Uuid;
 
 class PaymentController
 {
-    private const TYPES = [
-        'default' => 'yandex',
-        'types' => ['yandex', 'qiwi'],
-    ];
-
-
     public function pay(Request $request, Product $product)
     {
-        $type = $request->query->get('type');
-        $type = $type && in_array($type, self::TYPES['types']) ? $type : self::TYPES['default'];
 
-        $service = new Service([
-            '127.0.0.1',
-        ], [
-            'check' => CheckCommand::class,
-            'pay' => PayCommand::class,
-        ]);
-
-        /**
-         * @var RequestInterface $method
-         */
-        $method = $service->handleRequest(['command' => 'pay']);
-        $xmlResponseString = $method->process()->xml()->asXML();
-
-        echo $xmlResponseString;
     }
 
-    public function choose(Product $product)
+    public function choose(Request $request, Product $product)
     {
         $yandexWallet = Setting::getYandexWallet();
+        $qiwi = new QiwiPay();
+        $qiwiLink = $qiwi->getLink($product->price);
 
-        return view('payment.choose', compact('product', 'yandexWallet'));
+        return view('payment.choose', compact('product', 'yandexWallet', 'qiwiLink'));
     }
 
+    public function proceed(Request $request)
+    {
+        $purchase = new Purchase();
+        $purchase->product_id = 1;
+        $purchase->customer = $request->get('sender');
+        $purchase->generateBillId();
+        $purchase->setWaiting();
+        $purchase->saveOrFail();
+    }
+    
     public function success()
     {
         return ['success' => 'Оптала успешно произведена.'];
@@ -65,6 +53,8 @@ class PaymentController
         $purchase = new Purchase();
         $purchase->product_id = 1;
         $purchase->customer = $request->get('sender');
+        $purchase->bill_id = Uuid::uuid4()->toString();
+        $purchase->setWaiting();
         $purchase->saveOrFail();
 
         return Response::create('', 200);

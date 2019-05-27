@@ -7,3 +7,5 @@ Route::get('/payment/{product}/choose', 'PaymentController@choose')->name('payme
 Route::get('/payment/success', 'PaymentController@success')->name('payment.success');
 
 Route::get('/product/{product}', 'ProductController')->name('product');
+
+Route::get('/test', 'TestController')->name('test');

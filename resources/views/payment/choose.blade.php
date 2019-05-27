@@ -11,7 +11,7 @@
                     </a>
                 </div>
                 <div class="col-sm">
-                    <a class="pay-qiwi">
+                    <a class="pay-qiwi" href="{{ $qiwiLink }}">
                         <img src="{{ asset('img/payment/qiwi.jpeg') }}" alt="Киви" width="294" height="171">
                     </a>
                 </div>
@@ -26,12 +26,13 @@
 
     <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml" class="d-none yandex-form">
         <input type="hidden" name="receiver" value="{{ $yandexWallet }}">
+        <input type="hidden" name="formcomment" value="{{ $product->name }}">
+        <input type="hidden" name="short-dest" value="{{ $product->name }}">
         <input type="hidden" name="label" class="form-control" value="{{ $product->id }}">
         <input type="hidden" name="quickpay-form" value="shop">
         <input type="hidden" name="sum" value="{{ $product->price }}" data-type="number">
         <input type="hidden" name="paymentType" class="payment-type">
         <input type="hidden" name="successURL" value="{{ route('payment.success') }}">
-        <button class="btn btn-primary" type="submit">Перевести</button>
     </form>
 @stop
 
