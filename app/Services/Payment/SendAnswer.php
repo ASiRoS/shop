@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Mail;
 
 class SendAnswer
 {
-    public function send(string $email, Purchase $purchase): void
+    public function send(Purchase $purchase): void
     {
         $answer = Answer::byProduct($purchase->product);
 
-        Mail::to($email)->send(new SendAnswerMail($email, $answer));
+        Mail::to($purchase->customer)->send(new SendAnswerMail($purchase->customer, $answer));
     }
 }

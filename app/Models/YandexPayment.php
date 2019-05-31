@@ -31,28 +31,6 @@ class YandexPayment
     }
 
 
-    public function generateSha1(): string
-    {
-        $params = array_map(function (string $param) {
-            return $param === 'notification_secret' ? self::NOTIFY_CODE : $this->request->get($param);
-        }, self::PARAMS);
-
-        $count = count($params);
-        $last = $count - 1;
-
-        $result = '';
-
-        for($i = 0; $i < $count; $i++) {
-            $result .= $params[$i];
-
-            if($i !== $last) {
-                $result .= '&';
-            }
-        }
-
-        return sha1($result);
-    }
-
     /**
      * Is code protection turned on
      * @return bool
