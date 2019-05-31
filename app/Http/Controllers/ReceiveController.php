@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendAnswerMail;
-use App\Models\Product;
 use App\Models\Purchase;
 use App\Services\Payment\SendAnswer;
 use App\Services\Qiwi\QiwiPay;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 class ReceiveController
@@ -16,7 +13,8 @@ class ReceiveController
     /**
      * Receives notification from yandex,
      * about payment.
-     * @param $request
+     * @param Request $request
+     * @param SendAnswer $sender
      * @return \Illuminate\Http\Response
      */
     public function yandex(Request $request, SendAnswer $sender)

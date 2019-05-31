@@ -27,14 +27,14 @@ class Purchase extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function setPaid()
-    {
-        $this->status = self::STATUSES['paid'];
-    }
-
     public function generateBillId(): void
     {
         $this->bill_id = Uuid::uuid4()->toString();
+    }
+
+    public function setPaid()
+    {
+        $this->status = self::STATUSES['paid'];
     }
 
     public function setWaiting()

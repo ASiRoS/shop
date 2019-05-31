@@ -5,21 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Setting;
-use App\Models\YandexPayment;
 use App\Services\Qiwi\QiwiPay;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Ramsey\Uuid\Uuid;
 
 class PaymentController
 {
-    public function pay(Request $request, Product $product)
-    {
-
-    }
-
     public function choose(Request $request, Product $product)
     {
+        $this->makePurchase($request, $product);
+
         $yandexWallet = Setting::getYandexWallet();
         $qiwi = new QiwiPay();
         $qiwiLink = $qiwi->getLink($product->price);
@@ -27,11 +21,15 @@ class PaymentController
         return view('payment.choose', compact('product', 'yandexWallet', 'qiwiLink'));
     }
 
-    public function proceed(Request $request)
+    private function makePurchase(Request $request, Product $product)
     {
+        $request->validate([
+            'email' => 'required|email'
+        ]);
+
         $purchase = new Purchase();
-        $purchase->product_id = 1;
-        $purchase->customer = $request->get('sender');
+        $purchase->product_id = $product->id;
+        $purchase->customer = $request->get('email');
         $purchase->generateBillId();
         $purchase->setWaiting();
         $purchase->saveOrFail();
@@ -39,24 +37,6 @@ class PaymentController
     
     public function success()
     {
-        return ['success' => 'Оптала успешно произведена.'];
-    }
-
-    public function verify(Request $request)
-    {
-        $payment = new YandexPayment($request);
-
-        if(!$payment->isCorrect()) {
-            return Response::create('', 400);
-        }
-
-        $purchase = new Purchase();
-        $purchase->product_id = 1;
-        $purchase->customer = $request->get('sender');
-        $purchase->bill_id = Uuid::uuid4()->toString();
-        $purchase->setWaiting();
-        $purchase->saveOrFail();
-
-        return Response::create('', 200);
+        return view('payment.success');
     }
 }

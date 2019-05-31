@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Product
  * @package App\Models
+ * @property int $id
  * @property bool $published
  * @property int $category_id
  * @property int $subject_id
