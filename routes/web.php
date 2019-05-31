@@ -6,5 +6,3 @@ Route::post('/payment/{product}/choose', 'PaymentController@choose')->name('paym
 Route::get('/payment/success', 'PaymentController@success')->name('payment.success');
 
 Route::get('/product/{product}', 'ProductController')->name('product');
-
-Route::get('/test', 'TestController')->name('test');
