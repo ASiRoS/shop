@@ -17,6 +17,7 @@
         <img src="{{ asset($product->image) }}" alt="" width="250" height="300" class="card-img-top">
         <div class="card-body">
             <h2 class="card-title">{{ $product->name }}</h2>
+            <p class="price">Цена: <b>{{ $product->price }}</b>₽</p>
             <p class="description">{{ $product->description }}</p>
             <form action="{{ route('payment.choose', ['product' => $product]) }}" method="POST">
                 @csrf
