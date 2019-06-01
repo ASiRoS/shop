@@ -33,8 +33,8 @@ class Product extends Model
 
     public function getNameAttribute(): string
     {
-        $prefix = $this->prefix ? "({$this->prefix})" : '';
-        return $this->subject->name . ' ' . $prefix;
+        $prefix = $this->prefix ? " ({$this->prefix})" : '';
+        return $this->subject->name . $prefix;
     }
 
     public function getImageAttribute(?string $image): string

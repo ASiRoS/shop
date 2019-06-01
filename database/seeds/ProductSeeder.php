@@ -41,7 +41,7 @@ class ProductSeeder extends Seeder
                     $product->subject_id = $subject->id;
                     $product->category_id = $category->id;
                     $product->prefix = $prefix;
-                    $product->description = 'Lorem ipsum';
+                    $product->description = sprintf('Ответы на "%s" %s', $product->name, $category->name);
                     $product->save();
                 }
             }
