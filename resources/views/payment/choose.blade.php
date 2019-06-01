@@ -31,7 +31,7 @@
         <input type="hidden" name="targets" value="{{ $product->category->name }} {{ $product->name }}">
         <input type="hidden" name="label" class="form-control" value="{{ $product->id }}">
         <input type="hidden" name="quickpay-form" value="shop">
-        <input type="hidden" name="sum" value="{{ $product->price }}    " data-type="number">
+        <input type="hidden" name="sum" value="{{ $product->price }}" data-type="number">
         <input type="hidden" name="paymentType" class="payment-type">
         <input type="hidden" name="successURL" value="{{ route('payment.success') }}">
     </form>
