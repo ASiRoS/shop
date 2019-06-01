@@ -6,8 +6,8 @@ use Illuminate\Database\Seeder;
 class CategorySeeder extends Seeder
 {
     protected $categories = [
-        'ОГЭ' => 190,
-        'ЕГЭ' => 290,
+        'ОГЭ' => 5,
+        'ЕГЭ' => 5,
     ];
 
     /**
